@@ -15,6 +15,7 @@ import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRou
 import RestartAltRoundedIcon from "@mui/icons-material/RestartAltRounded";
 import RunCircleOutlinedIcon from "@mui/icons-material/RunCircleOutlined";
 import { LastColumn } from "../Models/last-column.model";
+import Zoom from "@mui/material/Zoom";
 // import TextField from '@mui/material/TextField';
 
 const App: React.FC<{}> = (): ReactElement => {
@@ -138,106 +139,262 @@ const App: React.FC<{}> = (): ReactElement => {
     console.log(graph);
   }, [graph]);
 
-  return totalNodes === 0 ? (
-    <Box>
-      <Typography>Alegeți numărul de vârfuri</Typography>
-      <FormControl size="small" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel>Numărul de vârfuri...</InputLabel>
-        <Select
-          value={totalNodes}
-          label="Numărul de vârfuri..."
-          onChange={onTotalNodesChange}
+  return (
+    <Box
+      style={{
+        background: "#efefef",
+        padding: "20px",
+        borderRadius: "10px",
+        boxShadow: "0px 1px 15px rgba(65,105,255,.4)",
+        margin: "25px 15px",
+      }}
+    >
+      <Typography
+        style={{
+          textAlign: "center",
+          fontWeight: "bold",
+          margin: "0px 0 30px 0",
+          fontSize: "1.5rem",
+          background: "#2a2a2b",
+          color: "white",
+          padding: "5px",
+          borderRadius: "8px",
+        }}
+      >
+        ALGORITMUL BELLMAN-KALABA
+      </Typography>
+      {totalNodes === 0 ? (
+        <Box
+          style={{
+            color: "white",
+          }}
         >
-          {Array(10)
-            .fill(0)
-            .map((_, index) => (
-              <MenuItem key={index} value={index + 1}>
-                {index + 1}
-              </MenuItem>
-            ))}
-        </Select>
-      </FormControl>
-    </Box>
-  ) : (
-    <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-      <Box style={{ width: "50%" }}>
-        <Typography>Legături</Typography>
-        {graph.map((node, index) => (
-          <NodeComponent
-            key={index}
-            node={node}
-            index={index}
-            remove={onRemove}
-            change={onChange}
-            totalNodes={totalNodes}
-          />
-        ))}
-        <Button
-          sx={{ m: 1 }}
-          color="success"
-          variant="outlined"
-          onClick={onAdd}
-          startIcon={<AddCircleOutlineRoundedIcon />}
+          <Typography>Alegeți numărul de vârfuri</Typography>
+          <FormControl size="small" sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel>Numărul de vârfuri...</InputLabel>
+            <Select
+              value={totalNodes}
+              label="Numărul de vârfuri..."
+              onChange={onTotalNodesChange}
+            >
+              {Array(10)
+                .fill(0)
+                .map((_, index) => (
+                  <MenuItem key={index} value={index + 1}>
+                    {index + 1}
+                  </MenuItem>
+                ))}
+            </Select>
+          </FormControl>
+        </Box>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+          }}
         >
-          Adaugă legătură
-        </Button>
-        <Button
-          sx={{ m: 1 }}
-          color="warning"
-          variant="outlined"
-          onClick={onReset}
-          startIcon={<RestartAltRoundedIcon />}
-        >
-          Resetează
-        </Button>
-        <Button
-          disabled={!canSubmit()}
-          sx={{ m: 1 }}
-          color="error"
-          variant="outlined"
-          onClick={onSubmit}
-          startIcon={<RunCircleOutlinedIcon />}
-        >
-          Rulează algoritm
-        </Button>
-      </Box>
-
-      { matrix.length > 0 ? (<Box style={{ width: "50%", display: "flex", flexDirection: "row" }}>
-        {matrix.length
-          ? matrix.map((row, i: number) => (
-              <Box>
-                {row.map((element, j: number) => (
-                  <Box
+          <Box style={{ marginRight: "50px", minWidth: "583px" }}>
+            <div
+              style={{
+                display: "inline-block",
+                background: "white",
+                padding: "15px",
+                borderRadius: "10px",
+              }}
+            >
+              <Typography
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  margin: "0px 0 30px 0",
+                  fontSize: "1.5rem",
+                  background: "royalblue",
+                  color: "white",
+                  padding: "5px",
+                  borderRadius: "8px",
+                }}
+              >
+                Muchii Graf
+              </Typography>
+              {graph.map((node, index) => (
+                <NodeComponent
+                  key={index}
+                  node={node}
+                  index={index}
+                  remove={onRemove}
+                  change={onChange}
+                  totalNodes={totalNodes}
+                />
+              ))}
+              <Button
+                sx={{ m: 1 }}
+                color="success"
+                variant="outlined"
+                onClick={onAdd}
+                startIcon={<AddCircleOutlineRoundedIcon />}
+              >
+                Adaugă muchie
+              </Button>
+              <Button
+                sx={{ m: 1 }}
+                color="warning"
+                variant="outlined"
+                onClick={onReset}
+                startIcon={<RestartAltRoundedIcon />}
+              >
+                Resetează
+              </Button>
+              <Button
+                disabled={!canSubmit()}
+                sx={{ m: 1 }}
+                color="primary"
+                variant="outlined"
+                onClick={onSubmit}
+                startIcon={<RunCircleOutlinedIcon />}
+              >
+                Rulează algoritm
+              </Button>
+            </div>
+          </Box>
+          <div
+            style={{
+              background: "#2a2a2b",
+              padding: "15px",
+              borderRadius: "10px",
+              flex: 1,
+              color: "white",
+              borderColor: "white",
+            }}
+          >
+            <Typography
+              style={{
+                textAlign: "center",
+                fontWeight: "bold",
+                margin: "0px 0 30px 0",
+                fontSize: "1.5rem",
+                color: "black",
+                background: "#efefef",
+                padding: "5px",
+                borderRadius: "8px",
+              }}
+            >
+              Rezultatul rulării algoritmului
+            </Typography>
+            {matrix.length > 0 ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <Zoom in={true}>
+                  <div
                     style={{
-                      width: "40px",
-                      padding: "5px",
-                      color: i === j ? "red" : "inherit",
+                      display: "flex",
+                      flexDirection: "row",
+                      maxHeight: "max-content",
+                      borderRight: "5px solid white",
+                      borderLeft: "5px solid white",
+                      borderRadius: "8px",
+                      fontSize: "2.7rem",
+                      fontWeight: "bold",
+                      marginRight: "25px",
                     }}
                   >
-                    {element === Infinity ? "∞" : element}
-                  </Box>
-                ))}
-              </Box>
-            ))
-          : null}
-        {lastColumns.length > 0
-          ? lastColumns?.map((column, i: number) => (
-              <Box style={{ display: "flex", flexDirection: "row" }}>
-              <Box style={{ display: "flex", flexDirection: "column", borderRight: '1px solid red', borderLeft: '1px solid red', borderRadius: '6px' }}>
-                {column.value.map((element: number, j: number) => (
-                    <Box key={`${i}${j}`} style={{
-                    width: "40px",
-                    padding: "5px"}}>
-                    {element === Infinity ? "∞" : element}
-                  </Box>
-                ))}
-              </Box>
-              { lastColumns.length - 2 === i ? "=" : ''}
-              </Box>
-            ))
-          : null}
-      </Box>) : null}
-    </div>
+                    {matrix.length
+                      ? matrix.map((row, i: number) => (
+                          <div>
+                            {row.map((element, j: number) => (
+                              <div
+                                style={{
+                                  padding: "5px 10px",
+                                  textAlign: "center",
+                                  color: i === j ? "royalblue" : "inherit",
+                                  maxHeight: "max-content",
+                                  fontFamily:
+                                    element === Infinity ? "Verdana" : "Arial",
+                                }}
+                              >
+                                {element === Infinity ? "∞" : element}
+                              </div>
+                            ))}
+                          </div>
+                        ))
+                      : null}
+                  </div>
+                </Zoom>
+                {lastColumns.length > 0
+                  ? lastColumns?.map((column, i: number) => (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          maxHeight: "max-content",
+                          fontSize: "2.7rem",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        <Zoom in={true}>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              margin: "0 0px",
+                              borderRight:
+                                lastColumns.length - 2 === i ||
+                                lastColumns.length - 1 === i
+                                  ? "5px solid royalblue"
+                                  : "5px solid white",
+                              maxHeight: "max-content",
+                              borderLeft:
+                                lastColumns.length - 2 === i ||
+                                lastColumns.length - 1 === i
+                                  ? "5px solid royalblue"
+                                  : "5px solid white",
+                              borderRadius: "8px",
+                            }}
+                          >
+                            {column.value.map((element: number, j: number) => (
+                              <div
+                                key={`${i}${j}`}
+                                style={{
+                                  padding: "5px 10px",
+                                  maxHeight: "max-content",
+                                  textAlign: "center",
+                                  fontFamily:
+                                    element === Infinity ? "Verdana" : "Arial",
+                                }}
+                              >
+                                {element === Infinity ? "∞" : element}
+                              </div>
+                            ))}
+                          </div>
+                        </Zoom>
+                        <Zoom in={true}>
+                          <span
+                            style={{
+                              margin: "auto 10px",
+                              maxHeight: "max-content",
+                              fontSize: "2.7rem",
+                              fontWeight: "bold",
+                              fontFamily: "Verdana",
+                            }}
+                          >
+                            {" "}
+                            {lastColumns.length - 2 === i ? "=" : ""}
+                          </span>
+                        </Zoom>
+                      </div>
+                    ))
+                  : null}
+              </div>
+            ) : null}
+          </div>
+        </div>
+      )}
+    </Box>
   );
 };
 
