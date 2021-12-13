@@ -54,6 +54,8 @@ const App: React.FC<{}> = (): ReactElement => {
   const onReset = () => {
     setTotalNodes(0);
     setGraph([]);
+    setMatrix([]);
+    setLastColumns([]);
   };
 
   const onSubmit = () => {
@@ -200,24 +202,41 @@ const App: React.FC<{}> = (): ReactElement => {
         </Button>
       </Box>
 
-      <Box style={{ width: "50%" }}>
-        {matrix.length &&
-          matrix.map((row, i: number) => (
-            <Box style={{ display: "flex", flexDirection: "row" }}>
-              {row.map((element, j: number) => (
-                <Box
-                  style={{
+      { matrix.length > 0 ? (<Box style={{ width: "50%", display: "flex", flexDirection: "row" }}>
+        {matrix.length
+          ? matrix.map((row, i: number) => (
+              <Box>
+                {row.map((element, j: number) => (
+                  <Box
+                    style={{
+                      width: "40px",
+                      padding: "5px",
+                      color: i === j ? "red" : "inherit",
+                    }}
+                  >
+                    {element === Infinity ? "∞" : element}
+                  </Box>
+                ))}
+              </Box>
+            ))
+          : null}
+        {lastColumns.length > 0
+          ? lastColumns?.map((column, i: number) => (
+              <Box style={{ display: "flex", flexDirection: "row" }}>
+              <Box style={{ display: "flex", flexDirection: "column", borderRight: '1px solid red', borderLeft: '1px solid red', borderRadius: '6px' }}>
+                {column.value.map((element: number, j: number) => (
+                    <Box key={`${i}${j}`} style={{
                     width: "40px",
-                    padding: "5px",
-                    color: i === j ? "red" : "inherit",
-                  }}
-                >
-                  {element === Infinity ? "∞" : element}
-                </Box>
-              ))}
-            </Box>
-          ))}
-      </Box>
+                    padding: "5px"}}>
+                    {element === Infinity ? "∞" : element}
+                  </Box>
+                ))}
+              </Box>
+              { lastColumns.length - 2 === i ? "=" : ''}
+              </Box>
+            ))
+          : null}
+      </Box>) : null}
     </div>
   );
 };
