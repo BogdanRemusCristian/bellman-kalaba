@@ -143,18 +143,18 @@ const App: React.FC<{}> = (): ReactElement => {
     <Box
       style={{
         background: "#efefef",
-        padding: "20px",
+        padding: "10px",
         borderRadius: "10px",
         boxShadow: "0px 1px 15px rgba(65,105,255,.4)",
-        margin: "25px 15px",
+        margin: "15px 5px",
       }}
     >
       <Typography
         style={{
           textAlign: "center",
           fontWeight: "bold",
-          margin: "0px 0 30px 0",
-          fontSize: "1.5rem",
+          margin: "0px 0 10px 0",
+          fontSize: "1.2rem",
           background: "#2a2a2b",
           color: "white",
           padding: "5px",
@@ -208,8 +208,8 @@ const App: React.FC<{}> = (): ReactElement => {
                 style={{
                   textAlign: "center",
                   fontWeight: "bold",
-                  margin: "0px 0 30px 0",
-                  fontSize: "1.5rem",
+                  margin: "0px 0 10px 0",
+                  fontSize: "1.2rem",
                   background: "royalblue",
                   color: "white",
                   padding: "5px",
@@ -273,7 +273,7 @@ const App: React.FC<{}> = (): ReactElement => {
                 textAlign: "center",
                 fontWeight: "bold",
                 margin: "0px 0 30px 0",
-                fontSize: "1.5rem",
+                fontSize: "1.2rem",
                 color: "black",
                 background: "#efefef",
                 padding: "5px",
@@ -298,7 +298,7 @@ const App: React.FC<{}> = (): ReactElement => {
                       borderRight: "5px solid white",
                       borderLeft: "5px solid white",
                       borderRadius: "8px",
-                      fontSize: "2.7rem",
+                      fontSize: "2rem",
                       fontWeight: "bold",
                       marginRight: "25px",
                     }}
@@ -332,7 +332,7 @@ const App: React.FC<{}> = (): ReactElement => {
                           display: "flex",
                           flexDirection: "row",
                           maxHeight: "max-content",
-                          fontSize: "2.7rem",
+                          fontSize: "2rem",
                           fontWeight: "bold",
                         }}
                       >
@@ -377,7 +377,7 @@ const App: React.FC<{}> = (): ReactElement => {
                             style={{
                               margin: "auto 10px",
                               maxHeight: "max-content",
-                              fontSize: "2.7rem",
+                              fontSize: "2rem",
                               fontWeight: "bold",
                               fontFamily: "Verdana",
                             }}
