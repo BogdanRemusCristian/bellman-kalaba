@@ -1,5 +1,5 @@
-export const delay: (timout: number) => Promise<void> = (timout: number) => {
-    return new Promise<void>((resolve, reject) => {
+export const forDelay: (timout: number) => Promise<void> = (timout: number) => {
+    return new Promise<void>((resolve) => {
         setTimeout(() => resolve(), timout);
     });
 };
