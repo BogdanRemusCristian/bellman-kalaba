@@ -15,10 +15,10 @@ const useClasses = makeStyles(() => ({
         padding: 10,
     },
     wrapper: {
-        width: '100%',
+        width: 'calc(100% - 145px)',
         height: '100%',
         display: 'flex',
-        flexDirectionn: 'row',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         padding: 10,
         marginTop: 10,
